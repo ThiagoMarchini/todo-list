@@ -1,5 +1,5 @@
 // Funções utilizadas
-function criarTarefa() {
+function createTask() {
   const task = document.getElementById('texto-tarefa').value;
   const orderedList = document.getElementById('lista-tarefas');
   const newTask = document.createElement('li');
@@ -37,22 +37,33 @@ function removeAllChildNodes(parent) {
   }
 }
 
-function limpaLista() {
+function clearList() {
   const parent = document.getElementById('lista-tarefas');
   removeAllChildNodes(parent);
+}
+
+function clearCompleted() {
+  const parent = document.getElementById('lista-tarefas');
+  const children = document.querySelectorAll('.completed');
+  for (let index = 0; index < children.length; index += 1) {
+    parent.removeChild(children[index]);
+  }
 }
 
 // Captura de cliques e lógica básica
 window.onload = function () {
   document.addEventListener('click', (event) => {
     if (event.target.id === 'criar-tarefa') {
-      criarTarefa();
+      createTask();
     }
     if (event.target.classList.contains('tarefa')) {
       selectTask(event.target);
     }
     if (event.target.id === 'apaga-tudo') {
-      limpaLista();
+      clearList();
+    }
+    if (event.target.id === 'remover-finalizados') {
+      clearCompleted();
     }
   }, false);
   document.addEventListener('dblclick', (event) => {
