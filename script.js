@@ -16,7 +16,7 @@ function selectTask(task) {
       const oldSelection = document.querySelector('.selected');
       oldSelection.className = 'tarefa';
     }
-    selectedTask.className = 'tarefa selected';
+    selectedTask.className += ' selected';
   } else {
     selectedTask.className = 'tarefa';
   }
@@ -25,9 +25,9 @@ function selectTask(task) {
 function completeTask(task) {
   const completedTask = task;
   if (completedTask.className === 'tarefa') {
-    completedTask.className = 'tarefa completed';
+    completedTask.className += ' completed';
   } else {
-    completedTask.className = 'tarefa';
+    completedTask.className -= ' completed';
   }
 }
 
@@ -56,6 +56,28 @@ function clearSelected() {
   parent.removeChild(children);
 }
 
+function moveUp() {
+  const array = Array.from(document.querySelectorAll('.tarefa'));
+  const selected = document.querySelector('.selected');
+  for (let index = 1; index < array.length; index += 1) {
+    if (array[index].className === selected.className) {
+      const auxiliary = array[index - 1];
+      array[index - 1] = array[index];
+      array[index] = auxiliary;
+    }
+  }
+  const listaPai = document.getElementById('lista-tarefas');
+  removeAllChildNodes(listaPai);
+  const orderedList = document.getElementById('lista-tarefas');
+  for (let index = 0; index < array.length; index += 1) {
+    orderedList.appendChild(array[index]);
+  }
+}
+
+function moveDown() {
+
+}
+
 // Captura de cliques e lógica básica
 window.onload = function () {
   document.addEventListener('click', (event) => {
@@ -73,6 +95,12 @@ window.onload = function () {
     }
     if (event.target.id === 'remover-selecionado') {
       clearSelected();
+    }
+    if (event.target.id === 'mover-cima') {
+      moveUp();
+    }
+    if (event.target.id === 'mover-baixo') {
+      moveDown();
     }
   }, false);
   document.addEventListener('dblclick', (event) => {
