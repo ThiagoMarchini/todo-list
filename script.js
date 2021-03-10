@@ -11,24 +11,23 @@ function createTask() {
 
 function selectTask(task) {
   const selectedTask = task;
-  if (selectedTask.className === 'tarefa') {
+  if (selectedTask.classList.contains('tarefa')) {
     if (document.querySelector('.selected')) {
       const oldSelection = document.querySelector('.selected');
-      oldSelection.className = 'tarefa';
+      oldSelection.classList.remove('selected');
     }
-    selectedTask.className += ' selected';
-  } else {
-    selectedTask.className = 'tarefa';
+    selectedTask.classList.add('selected');
   }
 }
 
 function completeTask(task) {
   const completedTask = task;
-  if (completedTask.className === 'tarefa') {
-    completedTask.className += ' completed';
-  } else {
-    completedTask.className -= ' completed';
-  }
+  completedTask.classList.add('completed');
+}
+
+function uncompleteTask(task) {
+  const completedTask = task;
+  completedTask.classList.remove('completed');
 }
 
 function removeAllChildNodes(parent) {
@@ -106,6 +105,9 @@ window.onload = function () {
   document.addEventListener('dblclick', (event) => {
     if (event.target.classList.contains('tarefa')) {
       completeTask(event.target);
+    }
+    if (event.target.classList.contains('tarefa completed')) {
+      uncompleteTask(event.target);
     }
   }, false);
 };
