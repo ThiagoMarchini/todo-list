@@ -50,6 +50,12 @@ function clearCompleted() {
   }
 }
 
+function clearSelected() {
+  const parent = document.getElementById('lista-tarefas');
+  const children = document.querySelector('.selected');
+  parent.removeChild(children);
+}
+
 // Captura de cliques e lógica básica
 window.onload = function () {
   document.addEventListener('click', (event) => {
@@ -64,6 +70,9 @@ window.onload = function () {
     }
     if (event.target.id === 'remover-finalizados') {
       clearCompleted();
+    }
+    if (event.target.id === 'remover-selecionado') {
+      clearSelected();
     }
   }, false);
   document.addEventListener('dblclick', (event) => {
