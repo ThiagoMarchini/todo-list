@@ -31,6 +31,17 @@ function completeTask(task) {
   }
 }
 
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
+
+function limpaLista() {
+  const parent = document.getElementById('lista-tarefas');
+  removeAllChildNodes(parent);
+}
+
 // Captura de cliques e lógica básica
 window.onload = function () {
   document.addEventListener('click', (event) => {
@@ -39,6 +50,9 @@ window.onload = function () {
     }
     if (event.target.classList.contains('tarefa')) {
       selectTask(event.target);
+    }
+    if (event.target.id === 'apaga-tudo') {
+      limpaLista();
     }
   }, false);
   document.addEventListener('dblclick', (event) => {
