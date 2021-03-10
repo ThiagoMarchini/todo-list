@@ -22,6 +22,15 @@ function selectTask(task) {
   }
 }
 
+function completeTask(task) {
+  const completedTask = task;
+  if (completedTask.className === 'tarefa') {
+    completedTask.className = 'tarefa completed';
+  } else {
+    completedTask.className = 'tarefa';
+  }
+}
+
 // Captura de cliques e lógica básica
 window.onload = function () {
   document.addEventListener('click', (event) => {
@@ -30,6 +39,11 @@ window.onload = function () {
     }
     if (event.target.classList.contains('tarefa')) {
       selectTask(event.target);
+    }
+  }, false);
+  document.addEventListener('dblclick', (event) => {
+    if (event.target.classList.contains('tarefa')) {
+      completeTask(event.target);
     }
   }, false);
 };
