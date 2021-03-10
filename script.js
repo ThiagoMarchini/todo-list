@@ -4,7 +4,7 @@ function createTask() {
   const orderedList = document.getElementById('lista-tarefas');
   const newTask = document.createElement('li');
   newTask.innerHTML = task;
-  newTask.className = 'tarefa';
+  newTask.classList = 'tarefa';
   orderedList.appendChild(newTask);
   document.getElementById('texto-tarefa').value = '';
 }
@@ -92,8 +92,34 @@ function moveDown() {
   }
 }
 
+function saveList() {
+  localStorage.clear();
+  const array = Array.from(document.querySelectorAll('.tarefa'));
+  for (let index = 0; index < array.length; index += 1) {
+    localStorage.setItem(index, `${array[index].innerHTML}|${array[index].classList}`);
+  }
+}
+
+function retrieveList() {
+  const orderedList = document.getElementById('lista-tarefas');
+  console.log('RETRIEVE');
+  for (let index = 0; index < localStorage.length; index += 1) {
+    const returned = localStorage.getItem(index).split('|');
+    // console.log(returned);
+    const text = returned[0];
+    const classes = returned[1];
+    const newTask = document.createElement('li');
+    newTask.innerHTML = text;
+    newTask.classList = classes;
+    orderedList.appendChild(newTask);
+  }
+}
+
 // Captura de cliques e lógica básica
 window.onload = function () {
+  if (localStorage) {
+    retrieveList();
+  }
   document.addEventListener('click', (event) => {
     if (event.target.id === 'criar-tarefa') {
       createTask();
@@ -115,6 +141,9 @@ window.onload = function () {
     }
     if (event.target.id === 'mover-baixo') {
       moveDown();
+    }
+    if (event.target.id === 'salvar-tarefas') {
+      saveList();
     }
   }, false);
   document.addEventListener('dblclick', (event) => {
