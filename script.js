@@ -56,39 +56,47 @@ function clearSelected() {
 }
 
 function moveUp() {
-  const array = Array.from(document.querySelectorAll('.tarefa'));
-  const selected = document.querySelector('.selected');
-  for (let index = 1; index < array.length; index += 1) {
-    if (array[index].className === selected.className) {
-      const auxiliary = array[index - 1];
-      array[index - 1] = array[index];
-      array[index] = auxiliary;
+  if (!document.querySelector('.selected')) {
+    alert('selecione uma tarefa para mover');
+  } else {
+    const array = Array.from(document.querySelectorAll('.tarefa'));
+    const selected = document.querySelector('.selected');
+    for (let index = 1; index < array.length; index += 1) {
+      if (array[index].className === selected.className) {
+        const auxiliary = array[index - 1];
+        array[index - 1] = array[index];
+        array[index] = auxiliary;
+      }
     }
-  }
-  const listaPai = document.getElementById('lista-tarefas');
-  removeAllChildNodes(listaPai);
-  const orderedList = document.getElementById('lista-tarefas');
-  for (let index = 0; index < array.length; index += 1) {
-    orderedList.appendChild(array[index]);
+    const listaPai = document.getElementById('lista-tarefas');
+    removeAllChildNodes(listaPai);
+    const orderedList = document.getElementById('lista-tarefas');
+    for (let index = 0; index < array.length; index += 1) {
+      orderedList.appendChild(array[index]);
+    }
   }
 }
 
 function moveDown() {
-  const array = Array.from(document.querySelectorAll('.tarefa'));
-  const selected = document.querySelector('.selected');
-  for (let index = 0; index < (array.length - 1); index += 1) {
-    if (array[index].className === selected.className) {
-      const auxiliary = array[index + 1];
-      array[index + 1] = array[index];
-      array[index] = auxiliary;
-      break;
+  if (!document.querySelector('.selected')) {
+    alert('selecione uma tarefa para mover');
+  } else {
+    const array = Array.from(document.querySelectorAll('.tarefa'));
+    const selected = document.querySelector('.selected');
+    for (let index = 0; index < (array.length - 1); index += 1) {
+      if (array[index].className === selected.className) {
+        const auxiliary = array[index + 1];
+        array[index + 1] = array[index];
+        array[index] = auxiliary;
+        break;
+      }
     }
-  }
-  const listaPai = document.getElementById('lista-tarefas');
-  removeAllChildNodes(listaPai);
-  const orderedList = document.getElementById('lista-tarefas');
-  for (let index = 0; index < array.length; index += 1) {
-    orderedList.appendChild(array[index]);
+    const listaPai = document.getElementById('lista-tarefas');
+    removeAllChildNodes(listaPai);
+    const orderedList = document.getElementById('lista-tarefas');
+    for (let index = 0; index < array.length; index += 1) {
+      orderedList.appendChild(array[index]);
+    }
   }
 }
 
