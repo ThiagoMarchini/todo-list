@@ -8,18 +8,24 @@
   <title>To Do List</title>
 </head>
 <body>
-  <header>Minha Lista de Tarefas</header>
-  <p id="funcionamento">Clique duas vezes em um item para marcá-lo como completo</p>
-  <input type="text" id="texto-tarefa" placeholder="Digite aqui a nova tarefa..."/>
-  <button id="criar-tarefa">Criar Tarefa</button>
-  <ol id="lista-tarefas">
-  </ol>
-  <button id="apaga-tudo">Apagar Lista</button>
-  <button id="remover-finalizados">Remover Finalizados</button>
-  <button id="remover-selecionado">Remover Selecionado</button>
-  <button id="mover-cima">Mover Acima</button>
-  <button id="mover-baixo">Mover Abaixo</button>
-  <button id="salvar-tarefas">Salvar</button>
-  <script src="script.js  "></script>
+  <main>
+    <header>Minha Lista de Tarefas</header>
+    <p id="funcionamento">Clique duas vezes em um item para marcá-lo como completo</p>
+    <div class="list">
+      <input type="text" id="texto-tarefa" placeholder="Digite aqui a nova tarefa..."/>
+      <button id="criar-tarefa">Criar Tarefa</button>
+      <ol id="lista-tarefas">
+      </ol>
+    </div>
+    <div class="bottom-buttons">
+      <button id="apaga-tudo">Apagar Lista</button>
+      <button id="remover-finalizados">Remover Finalizados</button>
+      <button id="remover-selecionado">Remover Selecionado</button>
+      <button id="mover-cima">Mover Acima</button>
+      <button id="mover-baixo">Mover Abaixo</button>
+      <button id="salvar-tarefas">Salvar</button>
+    </div>
+    <script src="script.js  "></script>
+  </main>
 </body>
 </html>
