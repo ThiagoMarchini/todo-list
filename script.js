@@ -25,7 +25,7 @@ function completeTask(task) {
   completedTask.classList.add('completed');
 }
 
-function uncompleteTask(task) {
+function removeCompletedTask(task) {
   const completedTask = task;
   completedTask.classList.remove('completed');
 }
@@ -102,7 +102,6 @@ function saveList() {
 
 function retrieveList() {
   const orderedList = document.getElementById('lista-tarefas');
-  console.log('RETRIEVE');
   for (let index = 0; index < localStorage.length; index += 1) {
     const returned = localStorage.getItem(index).split('|');
     // console.log(returned);
@@ -147,11 +146,10 @@ window.onload = function () {
     }
   }, false);
   document.addEventListener('dblclick', (event) => {
-    if (event.target.classList.contains('tarefa')) {
+    if (event.target.classList.contains('completed')) {
+      removeCompletedTask(event.target);
+    } else {
       completeTask(event.target);
-    }
-    if (event.target.classList.contains('tarefa completed')) {
-      uncompleteTask(event.target);
     }
   }, false);
 };
